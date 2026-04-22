@@ -1,0 +1,376 @@
+/* Doole Health x Eduba — prospect landing page
+   Tokens taken verbatim from brand-pack.json. Fonts (Inter, Poppins) are the
+   two already loaded on doolehealth.com. No additional families introduced. */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap");
+
+:root {
+  --primary: #2B00FF;
+  --secondary: #2040F5;
+  --accent: #5B9DFF;
+  --neutral-dark: #2A3642;
+  --neutral-light: #F0F0F0;
+  --surface: #F5F6F8;
+  --background: #FFFFFF;
+  --text-body: #3F4047;
+  --text-heading: #111827;
+  --success: #00D084;
+  --warning: #FCB900;
+  --error: #CF2E2E;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 24px;
+
+  --shadow-subtle: 0 1px 2px rgba(17, 24, 39, 0.06), 0 1px 3px rgba(17, 24, 39, 0.08);
+  --shadow-medium: 0 10px 25px rgba(17, 24, 39, 0.08), 0 4px 10px rgba(17, 24, 39, 0.05);
+
+  --unit: 8px;
+  --section-gap: 96px;
+
+  --heading: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --body: "Poppins", "Inter", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--body);
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-body);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(43, 0, 255, 0.25);
+  transition: border-color 160ms ease, color 160ms ease;
+}
+a:hover, a:focus-visible { border-bottom-color: var(--primary); }
+a:focus-visible { outline: 3px solid rgba(91, 157, 255, 0.5); outline-offset: 2px; border-radius: 2px; }
+
+h1, h2, h3 {
+  font-family: var(--heading);
+  color: var(--text-heading);
+  letter-spacing: -0.01em;
+  margin: 0 0 calc(var(--unit) * 2);
+}
+
+h1 { font-weight: 700; font-size: clamp(30px, 5vw, 52px); line-height: 1.08; }
+h2 { font-weight: 700; font-size: clamp(22px, 3vw, 30px); line-height: 1.2; margin-top: calc(var(--unit) * 6); }
+h3 { font-weight: 600; font-size: 18px; line-height: 1.35; color: var(--neutral-dark); }
+
+p { margin: 0 0 calc(var(--unit) * 2); }
+
+/* Layout container, mirrors the generous padding of doolehealth.com blocks */
+.wrap {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Top bar — small, calm, in keeping with their "Book a Demo" restraint */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(140%) blur(8px);
+  -webkit-backdrop-filter: saturate(140%) blur(8px);
+  border-bottom: 1px solid var(--neutral-light);
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  max-width: 1120px;
+  margin: 0 auto;
+  gap: 16px;
+}
+
+.logo-wrap { display: flex; align-items: center; gap: 12px; }
+.logo-wrap img { height: 40px; width: auto; display: block; }
+
+.lang-toggle {
+  display: inline-flex;
+  border: 1px solid var(--neutral-light);
+  border-radius: 999px;
+  padding: 2px;
+  background: var(--background);
+}
+.lang-toggle button {
+  font-family: var(--heading);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 8px 14px;
+  min-height: 32px;
+  border: 0;
+  background: transparent;
+  color: var(--neutral-dark);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease;
+}
+.lang-toggle button:hover { color: var(--text-heading); }
+.lang-toggle button[aria-pressed="true"] {
+  background: var(--primary);
+  color: #fff;
+}
+.lang-toggle button:focus-visible {
+  outline: 3px solid rgba(91, 157, 255, 0.55);
+  outline-offset: 2px;
+}
+
+/* Hero — white field, blue accent type, mirroring their hero rhythm */
+.hero {
+  padding: 72px 0 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto -160px -200px auto;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(closest-side, rgba(43, 0, 255, 0.10), rgba(43, 0, 255, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-inner { position: relative; z-index: 1; }
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--heading);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary);
+  background: rgba(43, 0, 255, 0.06);
+  padding: 6px 12px;
+  border-radius: 999px;
+  margin-bottom: 20px;
+}
+
+.hero p.lede {
+  max-width: 680px;
+  font-size: 18px;
+  color: var(--neutral-dark);
+}
+
+/* Primary CTA button, calm like theirs */
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--heading);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 14px 22px;
+  min-height: 48px;
+  border-radius: var(--radius-md);
+  background: var(--primary);
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+  box-shadow: var(--shadow-subtle);
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  border-bottom: 0;
+}
+.btn-primary:hover { background: #1a00d6; box-shadow: var(--shadow-medium); transform: translateY(-1px); }
+.btn-primary:focus-visible { outline: 3px solid rgba(91, 157, 255, 0.6); outline-offset: 3px; }
+.btn-primary .arrow { font-family: var(--heading); font-weight: 400; transition: transform 200ms ease; }
+.btn-primary:hover .arrow { transform: translateX(3px); }
+
+.cta-meta {
+  font-size: 14px;
+  color: var(--neutral-dark);
+}
+
+/* Section dividers are whitespace, in keeping with their block-based layout */
+section { padding: 56px 0; }
+section + section { border-top: 1px solid var(--neutral-light); }
+
+/* Pitch body — typography-led, generous line measure */
+.pitch p { max-width: 720px; font-size: 17px; }
+.pitch .quoted { font-style: italic; color: var(--neutral-dark); }
+
+/* Credential chips (FLI lineage, partners hinted, not logos) */
+.credentials {
+  background: var(--surface);
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--heading);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--neutral-dark);
+  background: var(--background);
+  padding: 8px 14px;
+  border: 1px solid var(--neutral-light);
+  border-radius: 999px;
+}
+.chip-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--primary);
+}
+
+/* Stat callouts, used lightly */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 32px;
+}
+.stat {
+  background: var(--background);
+  border: 1px solid var(--neutral-light);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  box-shadow: var(--shadow-subtle);
+}
+.stat-num {
+  font-family: var(--heading);
+  font-weight: 700;
+  font-size: 28px;
+  color: var(--primary);
+  letter-spacing: -0.02em;
+  display: block;
+  margin-bottom: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.stat-label {
+  font-size: 14px;
+  color: var(--neutral-dark);
+}
+
+/* Panel block for Ethics Engine / NLP Logix notes */
+.panel {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  margin-top: 24px;
+  border: 1px solid var(--neutral-light);
+}
+.panel h3 { margin-top: 0; color: var(--text-heading); }
+.panel p:last-child { margin-bottom: 0; }
+
+/* Final CTA card */
+.final-cta {
+  background: linear-gradient(135deg, #2B00FF 0%, #2040F5 100%);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  box-shadow: var(--shadow-medium);
+  margin: 32px 0;
+}
+.final-cta h2 { color: #fff; margin-top: 0; }
+.final-cta p { color: rgba(255, 255, 255, 0.92); }
+.final-cta .btn-primary {
+  background: #fff;
+  color: var(--primary);
+}
+.final-cta .btn-primary:hover { background: #F0F0F0; }
+.final-cta a { color: #fff; border-bottom-color: rgba(255,255,255,0.5); }
+.final-cta a:hover { border-bottom-color: #fff; }
+
+/* Prepared-by signature (Matt + Jake) */
+.signature {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.25);
+}
+.signature-label {
+  font-family: var(--heading);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+.signature-body strong { display: block; font-family: var(--heading); font-weight: 600; }
+.signature-body span { font-size: 14px; opacity: 0.85; }
+
+/* Footer */
+footer {
+  padding: 40px 0 60px;
+  border-top: 1px solid var(--neutral-light);
+  background: var(--background);
+}
+footer p {
+  font-size: 13px;
+  color: var(--neutral-dark);
+  margin: 0;
+}
+footer a { color: var(--neutral-dark); border-bottom-color: rgba(42,54,66,0.3); }
+
+/* Language visibility */
+[data-lang="es"] { display: none; }
+html[lang="es"] [data-lang="en"] { display: none; }
+html[lang="es"] [data-lang="es"] { display: inline; }
+html[lang="es"] [data-lang="es"].block { display: block; }
+html[lang="en"] [data-lang="en"].block { display: block; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  section { padding: 40px 0; }
+  .hero { padding: 48px 0 28px; }
+  .stats { grid-template-columns: 1fr; }
+  .final-cta { padding: 28px; border-radius: var(--radius-md); }
+  .panel { padding: 24px; border-radius: var(--radius-md); }
+  .topbar-inner { padding: 10px 16px; }
+  .logo-wrap img { height: 34px; }
+  .wrap { padding: 0 18px; }
+}
+
+@media (max-width: 375px) {
+  body { font-size: 16px; }
+  .hero { padding: 36px 0 20px; }
+  .btn-primary { width: 100%; }
+  .cta-meta { width: 100%; }
+  h1 { font-size: 28px; }
+  .stat-num { font-size: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
